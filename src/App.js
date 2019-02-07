@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import './App.css'
 
 import TextChip from './components/textChip'
+import ProductTable from './components/productTable'
 
 class App extends Component {
   render() {
@@ -17,7 +19,11 @@ class App extends Component {
         textColor = "#ffffff"
         text = "R$ 250,00"
         width = "90px" / >
+
+        <ProductTable/>
       </div>
+
+      
     );
   }
 }
