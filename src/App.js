@@ -1,25 +1,22 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+import TextChip from './components/textChip'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+       < TextChip
+       bgColor = "#d6d6d6"
+       textColor = "#a2a2a2"
+       text = "02/01/2019 13:57"
+       width = "140px" / >
+
+        < TextChip
+        bgColor = "#f5bb4e"
+        textColor = "#ffffff"
+        text = "R$ 250,00"
+        width = "90px" / >
       </div>
     );
   }
