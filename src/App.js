@@ -1,10 +1,25 @@
 import React, { Component } from 'react';
+import axios from 'axios'
 import './App.css'
 
 import TextChip from './components/textChip'
 import ProductTable from './components/productTable'
 
 class App extends Component {
+
+  constructor(props){
+    super(props)
+    this.fetchData()
+  }
+
+
+  fetchData(){
+    const baseUrl = 'https://storage.googleapis.com/dito-questions/events.json'
+    axios.get(baseUrl)
+      .then(res => console.log('data', res.data))
+  }
+
+
   render() {
     return (
       <div className="App">

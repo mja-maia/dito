@@ -7,18 +7,22 @@ class ProductTable extends React.Component{
     return (
       <div className="tableWrapper">
         <table>
-          <tr>
-            <th>Produto</th>
-            <th>Preço</th> 
-          </tr>
-          <tr>
-            <td>Camisa Azul</td>
-            <td>100,00</td> 
-          </tr>
-          <tr>
-            <td>Calça Rosa</td>
-            <td>150,00</td> 
-          </tr>
+          <thead>
+            <tr>
+              <th>Produto</th>
+              <th>Preço</th> 
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Camisa Azul</td>
+              <td>100,00</td> 
+            </tr>
+            <tr>
+              <td>Calça Rosa</td>
+              <td>150,00</td> 
+            </tr>
+          </tbody>
         </table>
       </div>
     )
