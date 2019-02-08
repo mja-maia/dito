@@ -1,4 +1,6 @@
 import React from 'react'
+import { mapObjIndexed, values } from 'ramda'
+
 import './index.css'
 
 
@@ -17,10 +19,6 @@ class ProductTable extends React.Component{
             <tr>
               <td>Camisa Azul</td>
               <td>100,00</td> 
-            </tr>
-            <tr>
-              <td>Calça Rosa</td>
-              <td>150,00</td> 
             </tr>
           </tbody>
         </table>

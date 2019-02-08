@@ -1,41 +1,71 @@
 import React, { Component } from 'react';
-import axios from 'axios'
+import EventService  from "./service";
+
 import './App.css'
 
-import TextChip from './components/textChip'
-import ProductTable from './components/productTable'
+import PurchaseEvent from './components/purchaseEvent'
+import {
+  mapObjIndexed,
+  values,
+  filter
+} from 'ramda'
+
+
+import { groupBy, pipe, prop, find } from 'ramda'
 
 class App extends Component {
 
   constructor(props){
     super(props)
-    this.fetchData()
+    
+    this.state = {
+      events: []
+    }
+
+    this.eventsByTransactionsId = this.eventsByTransactionsId.bind(this)
+  }
+
+  componentDidMount(){
+    EventService.fetchData().then(response => {
+      this.setState({
+        ...this.state,
+        events: response.data.events
+      })
+    })
   }
 
 
-  fetchData(){
-    const baseUrl = 'https://storage.googleapis.com/dito-questions/events.json'
-    axios.get(baseUrl)
-      .then(res => console.log('data', res.data))
+  eventsByTransactionsId(){
+    // const getTransactionId = (item) => item.custom_data.find(x => x.key === 'transaction_id').value
+    const getTransactionId = pipe(
+      //pegar custom data,
+      prop('custom_data'),
+      //fazer find por transaction_id,
+      find(x => x.key === 'transaction_id'),
+      //pegar o value
+      prop('value')
+    )
+    const result = groupBy(getTransactionId, this.state.events)
+    return result
   }
 
+  dataFormatter(event){
+    const buyEvent = event.find(e => e.event === 'comprou')
+    const products = event.filter(e => e.event === 'comprou-produto')
+    console.log('array', Object.assign({}, buyEvent, products))
+
+  }
 
   render() {
     return (
       <div className="App">
-       < TextChip
-       bgColor = "#d6d6d6"
-       textColor = "#a2a2a2"
-       text = "02/01/2019 13:57"
-       width = "140px" / >
-
-        < TextChip
-        bgColor = "#f5bb4e"
-        textColor = "#ffffff"
-        text = "R$ 250,00"
-        width = "90px" / >
-
-        <ProductTable/>
+       {values(mapObjIndexed((eventData, transactionId) => {
+        return(
+          <div key={transactionId}>
+            < PurchaseEvent eventData={eventData}/>
+          </div>
+        )
+       },this.eventsByTransactionsId()))}
       </div>
 
       
