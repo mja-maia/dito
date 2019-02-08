@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
-import EventService  from "./service";
 
-import './App.css'
-
-import PurchaseEvent from './components/purchaseEvent'
 import {
+  groupBy,
+  pipe,
+  prop,
+  filter,
+  find,
   mapObjIndexed,
   values,
-  filter
+  map,
+  reduce
 } from 'ramda'
 
 
-import { groupBy, pipe, prop, find } from 'ramda'
+import eventService  from "./service";
+import PurchaseEvent from './components/purchaseEvent'
+
+import './App.css'
 
 class App extends Component {
 
@@ -26,7 +31,7 @@ class App extends Component {
   }
 
   componentDidMount(){
-    EventService.fetchData().then(response => {
+    eventService.fetchData().then(response => {
       this.setState({
         ...this.state,
         events: response.data.events
@@ -50,25 +55,44 @@ class App extends Component {
   }
 
   dataFormatter(event){
-    const buyEvent = event.find(e => e.event === 'comprou')
-    const products = event.filter(e => e.event === 'comprou-produto')
-    console.log('array', Object.assign({}, buyEvent, products))
+    const rawStore = event.find(e => e.event === 'comprou')
+    const store = {
+      revenue: rawStore.revenue,
+      timestamp: rawStore.timestamp,
+      storeName: rawStore.custom_data.find(data => data.key === 'store_name').value
+    }
 
+    const products = pipe(
+      filter(e => e.event === 'comprou-produto'),
+      map(p => reduce((acc, productEvent) => ({
+        ...acc,
+        [productEvent.key]: productEvent.value
+      }), {}, p.custom_data)),
+    )(event)
+
+    const result = {
+      store,
+      products
+    }
+    return result
   }
 
   render() {
     return (
-      <div className="App">
-       {values(mapObjIndexed((eventData, transactionId) => {
-        return(
-          <div key={transactionId}>
-            < PurchaseEvent eventData={eventData}/>
-          </div>
-        )
-       },this.eventsByTransactionsId()))}
+      <div className="App with-timeline">
+        {
+          values(mapObjIndexed((event, transactionId) => {
+            const eventData = this.dataFormatter(event)
+            return (
+              <div key={transactionId} className="timeline-item" >
+                <PurchaseEvent
+                  eventData={eventData}
+                />
+              </div>
+            ) 
+          }, this.eventsByTransactionsId()))
+        }
       </div>
-
-      
     );
   }
 }

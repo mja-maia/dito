@@ -1,11 +1,9 @@
 import React from 'react'
-import { mapObjIndexed, values } from 'ramda'
-
 import './index.css'
-
 
 class ProductTable extends React.Component{
   render(){
+    const { products } = this.props
     return (
       <div className="tableWrapper">
         <table>
@@ -16,10 +14,16 @@ class ProductTable extends React.Component{
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Camisa Azul</td>
-              <td>100,00</td> 
-            </tr>
+            {
+              products.map((product, key) => {
+                return (
+                  <tr key={key}>
+                    <td>{product.product_name}</td>
+                    <td>{`R$ ${product.product_price}`}</td> 
+                  </tr>
+                )
+              })
+            }
           </tbody>
         </table>
       </div>
