@@ -75,7 +75,6 @@ class App extends Component {
       store,
       products
     }
-    console.log(result)
     return result
   }
 
