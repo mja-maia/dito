@@ -55,6 +55,7 @@ class App extends Component {
   }
 
   dataFormatter(event){
+
     const rawStore = event.find(e => e.event === 'comprou')
     const store = {
       revenue: rawStore.revenue,
@@ -74,6 +75,7 @@ class App extends Component {
       store,
       products
     }
+    console.log(result)
     return result
   }
 
