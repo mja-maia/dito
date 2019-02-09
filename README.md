@@ -1,68 +1,31 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Miguel Maia (Dito)
 
-## Available Scripts
+Esta é uma aplicação que foi criada durante o processo seletivo da empresa Dito, onde consistia em criar um componente para exibição de eventos fornecidos por eles através de uma API.
 
-In the project directory, you can run:
+### Instalação
 
-### `npm start`
+Para efetuar a instalação é necessario uma maquina com o NPM instalado. Após clonar o repositório na sua maquina, acesse a pasta raiz do repositório e digite:
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+$ yarn install
+```
+Depois de instalado todas as dependencias do projeto basta digitar: 
+```
+$ yarn start
+```
+### Testes:
+Para executar os testes escritos na aplicação execute:
+```
+yarn test
+```
+### Build para produção
+É um comando disponível que cria a pasta chamada 'build', onde arquivos são minificados, melhorando assim sua performace
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+```
+yarn build
+```
 
-### `npm test`
+### obs:
+Para este projeto decidi utilizar o boiler-plate do react, fornecido pelo Facebook. Também implementei alguns teste com JEST e Enzyme para garantir a integridade da aplicação. Se tivesse um pouco mais de tempo teria feito uma CI/CD com o Circle/CI para garantir a integridade de cada commit feito.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
